@@ -2,4 +2,4 @@
 
 Our roadmap has moved to an interactive Kanban Board! 
 
-You can view our live progress, upvote features, and see what's coming next by checking the **Projects** tab in this repository, or by filtering our Issues by the `roadmap` label.
+You can view our live progress, upvote features, and see what's coming next by checking the **Projects** tab in this repository.

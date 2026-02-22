@@ -1,0 +1,34 @@
+name: Issue Greeter
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  greet:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - name: Greet New Issue
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const issueBody = context.payload.issue.body || '';
+            const isBug = issueBody.includes('Describe the bug') || context.payload.issue.labels.some(l => l.name === 'bug');
+            
+            let message = "👋 Hello! Thank you for opening an issue with Caliper HQ.\\n\\n";
+            
+            if (isBug) {
+              message += "Our engineering system has logged this bug report. We will triage this and assign it to our next development sprint. If you have any error logs, please ensure they are attached!";
+            } else {
+              message += "We appreciate your feedback and feature requests! Our team reviews these regularly to shape the Caliper roadmap.";
+            }
+            
+            message += "\\n\\n*— The Caliper Automated Triage System*";
+            
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: message
+            });

@@ -1,6 +1,6 @@
 name: 🐛 Bug Report (Compact)
-description: Quick bug report for known issues
-labels: ["bug", "triage-needed"]
+description: Quick bug report
+labels: ["bug"]
 body:
   - type: input
     id: summary
@@ -57,16 +57,3 @@ body:
         - 🟢 Low
     validations:
       required: true
-
-  - type: markdown
-    attributes:
-      value: |
-        ---
-        
-        ## 🤖 For AI Agents
-        
-        **Triage:** Apply labels + assign specialist  
-        **Specialist:** Use `prompts/bug-fix.md`  
-        **QA:** Verify fix + no regressions
-        
-        **MCP:** mcp-github, mcp-shell

@@ -1,6 +1,6 @@
 name: ✨ Feature Request (Compact)
 description: Quick feature request
-labels: ["enhancement", "triage-needed"]
+labels: ["enhancement"]
 body:
   - type: input
     id: summary
@@ -40,17 +40,3 @@ body:
         - 🔴 High
     validations:
       required: true
-
-  - type: markdown
-    attributes:
-      value: |
-        ---
-        
-        ## 🤖 For AI Agents
-        
-        **Triage:** Apply labels + assign specialist  
-        **Specialist:** Use `prompts/feature-implementation.md`  
-        **QA:** Verify acceptance criteria  
-        **Docs:** Update docs + CHANGELOG
-        
-        **MCP:** mcp-github, mcp-filesystem

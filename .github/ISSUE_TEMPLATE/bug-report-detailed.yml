@@ -1,13 +1,13 @@
 name: 🐛 Bug Report (Detailed)
-description: Report a bug with full context for multi-agent review
-labels: ["bug", "triage-needed"]
+description: Report a bug with full context
+labels: ["bug"]
 body:
   - type: markdown
     attributes:
       value: |
         ## 🐛 Bug Report
         
-        Please provide as much detail as possible to help our AI agents diagnose and fix this issue.
+        Please provide as much detail as possible.
 
   - type: textarea
     id: description
@@ -16,10 +16,8 @@ body:
       description: What happened? What should have happened?
       placeholder: |
         **What happened:**
-        <Clear description of the bug>
         
         **What should have happened:**
-        <Expected behavior>
     validations:
       required: true
 
@@ -80,7 +78,7 @@ body:
   - type: dropdown
     id: impact
     attributes:
-      label: Impact Assessment
+      label: Impact
       description: What is the impact of this bug?
       options:
         - 🔴 Critical - Data loss or security vulnerability
@@ -89,20 +87,3 @@ body:
         - 🟢 Low - Cosmetic or minor inconvenience
     validations:
       required: true
-
-  - type: markdown
-    attributes:
-      value: |
-        ---
-        
-        ## 🤖 For AI Agents
-        
-        **Triage Agent:** Apply priority label + assign to specialist agent
-        
-        **Specialist Agent:** Use `prompts/bug-fix.md` template from docs
-        
-        **QA Red Team:** Verify fix + test edge cases + no regressions
-        
-        **Required MCP:** mcp-github, mcp-filesystem, mcp-shell (for reproduction)
-        
-        **Required Skills:** systematic-debugging, verification-before-completion

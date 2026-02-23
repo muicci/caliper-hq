@@ -1,0 +1,85 @@
+name: Auto Triage Issues
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  triage:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Classify and label issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issue = context.payload.issue;
+            const title = issue.title.toLowerCase();
+            const body = issue.body.toLowerCase();
+            
+            const labels = [];
+            
+            // Rule 1: Bug Reports
+            if (title.includes('crash') || title.includes('error') || 
+                title.includes('fail') || title.includes('broken') ||
+                title.includes('bug')) {
+              labels.push('bug');
+              if (title.includes('crash') || body.includes('data loss')) {
+                labels.push('priority-critical');
+              } else if (body.includes('blocked') || body.includes('cannot')) {
+                labels.push('priority-high');
+              } else {
+                labels.push('priority-medium');
+              }
+            }
+            
+            // Rule 2: Feature Requests
+            if (title.includes('feature') || title.includes('add ') || 
+                title.includes('support') || title.includes('enhancement')) {
+              labels.push('enhancement', 'roadmap');
+            }
+            
+            // Rule 3: GAP Issues
+            const gapMatch = title.match(/\[gap\s*(\d+)\]/i);
+            if (gapMatch) {
+              labels.push('gap', 'enhancement', 'roadmap');
+              labels.push(`gap-${gapMatch[1]}`);
+            }
+            
+            // Rule 4: Phase Issues
+            const phaseMatch = title.match(/\[phase\s*(\d+)\]/i);
+            if (phaseMatch) {
+              labels.push('phase', 'roadmap');
+              labels.push(`phase-${phaseMatch[1]}`);
+            }
+            
+            // Rule 5: Security
+            if (title.includes('security') || title.includes('vulnerability') ||
+                body.includes('leak') || body.includes('exploit')) {
+              labels.push('security', 'priority-critical');
+            }
+            
+            // Rule 6: Documentation
+            if (title.includes('docs') || title.includes('documentation') ||
+                body.includes('readme') || body.includes('changelog')) {
+              labels.push('documentation');
+            }
+            
+            // Apply labels
+            if (labels.length > 0) {
+              await github.rest.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                labels: labels
+              });
+            }
+            
+            // Add comment with triage info
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issue.number,
+              body: `🤖 **Auto-Triage Complete**\n\n` +
+                    `**Labels Applied:** ${labels.join(', ') || 'None'}\n\n` +
+                    `A specialist agent will review this issue shortly.`
+            });

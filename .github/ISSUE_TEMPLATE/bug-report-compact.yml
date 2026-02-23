@@ -1,0 +1,72 @@
+name: 🐛 Bug Report (Compact)
+description: Quick bug report for known issues
+labels: ["bug", "triage-needed"]
+body:
+  - type: input
+    id: summary
+    attributes:
+      label: Bug Summary
+      description: One sentence description
+      placeholder: "e.g., App crashes when dropping D-size PDF"
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction Steps
+      placeholder: |
+        1. Step 1
+        2. Step 2
+        3. Step 3
+    validations:
+      required: true
+
+  - type: input
+    id: expected
+    attributes:
+      label: Expected Behavior
+      placeholder: "What should happen"
+    validations:
+      required: true
+
+  - type: input
+    id: actual
+    attributes:
+      label: Actual Behavior
+      placeholder: "What actually happens"
+    validations:
+      required: true
+
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      placeholder: "macOS 14.0 + v2.2.1"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      options:
+        - 🔴 Critical
+        - 🟠 High
+        - 🟡 Medium
+        - 🟢 Low
+    validations:
+      required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        
+        ## 🤖 For AI Agents
+        
+        **Triage:** Apply labels + assign specialist  
+        **Specialist:** Use `prompts/bug-fix.md`  
+        **QA:** Verify fix + no regressions
+        
+        **MCP:** mcp-github, mcp-shell

@@ -1,0 +1,56 @@
+name: ✨ Feature Request (Compact)
+description: Quick feature request
+labels: ["enhancement", "triage-needed"]
+body:
+  - type: input
+    id: summary
+    attributes:
+      label: Feature Summary
+      description: One sentence description
+      placeholder: "e.g., Add dark mode toggle in settings"
+    validations:
+      required: true
+
+  - type: textarea
+    id: why
+    attributes:
+      label: Why Is This Needed?
+      placeholder: "User benefit or problem this solves"
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Top 3 Acceptance Criteria
+      placeholder: |
+        - [ ] Criterion 1
+        - [ ] Criterion 2
+        - [ ] Criterion 3
+    validations:
+      required: true
+
+  - type: dropdown
+    id: complexity
+    attributes:
+      label: Complexity
+      options:
+        - 🟢 Low
+        - 🟡 Medium
+        - 🔴 High
+    validations:
+      required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        
+        ## 🤖 For AI Agents
+        
+        **Triage:** Apply labels + assign specialist  
+        **Specialist:** Use `prompts/feature-implementation.md`  
+        **QA:** Verify acceptance criteria  
+        **Docs:** Update docs + CHANGELOG
+        
+        **MCP:** mcp-github, mcp-filesystem

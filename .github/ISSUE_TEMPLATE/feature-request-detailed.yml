@@ -1,0 +1,103 @@
+name: ✨ Feature Request (Detailed)
+description: Request a new feature with full context for multi-agent implementation
+labels: ["enhancement", "roadmap", "triage-needed"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## ✨ Feature Request
+        
+        Describe the feature you'd like to see. Our AI agents will review, design, and implement this.
+
+  - type: textarea
+    id: feature
+    attributes:
+      label: Feature Description
+      description: What would you like to see added?
+      placeholder: |
+        **What:**
+        <Clear description of the feature>
+        
+        **Why:**
+        <User benefit or problem this solves>
+        
+        **Who benefits:**
+        <Target users: estimators, admins, all users>
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance Criteria
+      description: What conditions must be met for this to be considered complete?
+      placeholder: |
+        - [ ] Criterion 1
+        - [ ] Criterion 2
+        - [ ] Criterion 3
+    validations:
+      required: true
+
+  - type: dropdown
+    id: components
+    attributes:
+      label: Affected Components
+      multiple: true
+      options:
+        - Frontend (Svelte 5)
+        - Backend (Rust)
+        - Database (SQLite)
+        - AI Integration
+        - Documentation
+        - Build/CI
+    validations:
+      required: false
+
+  - type: dropdown
+    id: complexity
+    attributes:
+      label: Estimated Complexity
+      description: How complex do you think this feature is?
+      options:
+        - 🟢 Low - Small change, minimal risk
+        - 🟡 Medium - Moderate change, some risk
+        - 🔴 High - Large change, significant risk
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional Context
+      description: Any related issues, mockups, or examples?
+      placeholder: |
+        Related issues: muicci/caliper-hq#X
+        Mockups: <attach or link>
+        Examples: <describe>
+    validations:
+      required: false
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        
+        ## 🤖 For AI Agents
+        
+        **Triage Agent:** Apply priority label + assign to specialist agent + add to project board
+        
+        **Specialist Agent:** 
+        1. Review acceptance criteria
+        2. Create technical design
+        3. Use `prompts/feature-implementation.md` template
+        4. Create implementation branch
+        5. Request 3-agent review panel
+        
+        **Review Panel:**
+        - QA Red Team (security + edge cases)
+        - Mac Build Engineer (build verification)
+        - Documentation Librarian (docs updated)
+        
+        **Required MCP:** mcp-github, mcp-filesystem, mcp-shell, mcp-sqlite (if DB changes)
+        
+        **Required Skills:** brainstorming, writing-plans, verification-before-completion

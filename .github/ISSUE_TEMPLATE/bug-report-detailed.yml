@@ -1,0 +1,108 @@
+name: 🐛 Bug Report (Detailed)
+description: Report a bug with full context for multi-agent review
+labels: ["bug", "triage-needed"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 🐛 Bug Report
+        
+        Please provide as much detail as possible to help our AI agents diagnose and fix this issue.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Bug Description
+      description: What happened? What should have happened?
+      placeholder: |
+        **What happened:**
+        <Clear description of the bug>
+        
+        **What should have happened:**
+        <Expected behavior>
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction Steps
+      description: How do we reproduce this bug?
+      placeholder: |
+        1. Step 1
+        2. Step 2
+        3. Step 3
+    validations:
+      required: true
+
+  - type: dropdown
+    id: frequency
+    attributes:
+      label: Reproduction Frequency
+      options:
+        - Always (100%)
+        - Often (50-99%)
+        - Sometimes (10-49%)
+        - Rare (<10%)
+    validations:
+      required: true
+
+  - type: dropdown
+    id: os
+    attributes:
+      label: Operating System
+      options:
+        - macOS (Apple Silicon)
+        - macOS (Intel)
+        - Windows 11
+        - Windows 10
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: Caliper Version
+      placeholder: v2.2.1
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Error Logs & Screenshots
+      description: Paste any error messages or attach screenshots
+      render: shell
+    validations:
+      required: false
+
+  - type: dropdown
+    id: impact
+    attributes:
+      label: Impact Assessment
+      description: What is the impact of this bug?
+      options:
+        - 🔴 Critical - Data loss or security vulnerability
+        - 🟠 High - Core workflow blocked
+        - 🟡 Medium - Degraded user experience
+        - 🟢 Low - Cosmetic or minor inconvenience
+    validations:
+      required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        
+        ## 🤖 For AI Agents
+        
+        **Triage Agent:** Apply priority label + assign to specialist agent
+        
+        **Specialist Agent:** Use `prompts/bug-fix.md` template from docs
+        
+        **QA Red Team:** Verify fix + test edge cases + no regressions
+        
+        **Required MCP:** mcp-github, mcp-filesystem, mcp-shell (for reproduction)
+        
+        **Required Skills:** systematic-debugging, verification-before-completion
